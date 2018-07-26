@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.RecruitmentMapper">
+    <select id="getRecruitmentDao" resultType="com.zy.model.T_RECRUITMENT">
+        SELECT * FROM T_RECRUITMENT WHERE RE_STATE=#{state}
+    </select>
+    <select id="getRecruitmentLimitDao" resultType="com.zy.model.T_RECRUITMENT">
+        SELECT * FROM
+        (SELECT ROWNUM rn,a.* FROM T_RECRUITMENT a WHERE RE_STATE=#{state} and #{p}>=ROWNUM) b
+        where b.rn>#{c}
+    </select>
+</mapper>

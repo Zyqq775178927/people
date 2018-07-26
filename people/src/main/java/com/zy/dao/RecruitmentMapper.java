@@ -1,0 +1,15 @@
+package com.zy.dao;
+
+import com.zy.model.T_RECRUITMENT;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * Created by Administrator on 2018/7/26.
+ */
+public interface RecruitmentMapper {
+    List<T_RECRUITMENT> getRecruitmentDao(int state);
+
+    List<T_RECRUITMENT> getRecruitmentLimitDao(@Param("state") int state,@Param("p") int pages1,@Param("c") int currentPages1);
+}
