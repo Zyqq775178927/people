@@ -104,6 +104,7 @@
 <div id="d1">
     <a href="getResume?currentPage=1">查看简历</a>
     <span onclick="a()">添加简历</span>
+    <a href="getInvited">查看投递状况</a>
 </div>
 <div id="d2">
     <div>

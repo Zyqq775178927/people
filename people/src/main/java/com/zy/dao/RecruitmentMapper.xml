@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zy.dao.RecruitmentMapper">
+    <update id="updateRecuritD">
+        UPDATE T_RECRUITMENT SET RE_SAL=#{re_sal},RE_ADDRESS=#{re_address},RE_PHONE=#{re_phone},RE_NEED=#{re_need} where RE_ID=#{re_id}
+    </update>
     <select id="getRecruitmentDao" resultType="com.zy.model.T_RECRUITMENT">
         SELECT * FROM T_RECRUITMENT WHERE RE_STATE=#{state}
     </select>
-    <select id="getRecruitmentLimitDao" resultType="com.zy.model.T_RECRUITMENT">
+    <select id="getRecruitmentLimitDao" resultMap="r_p">
         SELECT * FROM
-        (SELECT ROWNUM rn,a.* FROM T_RECRUITMENT a WHERE RE_STATE=#{state} and #{p}>=ROWNUM) b
+        (SELECT ROWNUM rn,a.* FROM T_RECRUITMENT a WHERE RE_STATE=#{state} and #{p}>=ROWNUM) b,T_POSITON f
         where b.rn>#{c}
+        and b.RE_PID=f.P_ID
     </select>
+    <select id="getDepartDao" resultType="com.zy.model.T_DEPARTMENT">
+        SELECT * FROM T_DEPARTMENT
+    </select>
+    <select id="getPositonDao" resultType="com.zy.model.T_POSITON">
+        SELECT * FROM T_POSITON WHERE P_DID=#{did}
+    </select>
+    <resultMap id="r_p" type="com.zy.model.T_RECRUITMENT">
+        <id property="re_id" column="RE_ID"></id>
+        <result property="re_address" column="RE_ADDRESS"/>
+        <result property="re_need" column="RE_NEED"/>
+        <result property="re_phone" column="RE_PHONE"/>
+        <result property="re_sal" column="RE_SAL"/>
+        <result property="re_time" column="RE_TIME"/>
+        <association property="t_positon" javaType="com.zy.model.T_POSITON">
+            <id property="p_id" column="P_ID"></id>
+            <result property="p_name" column="P_NAME"/>
+        </association>
+    </resultMap>
 </mapper>

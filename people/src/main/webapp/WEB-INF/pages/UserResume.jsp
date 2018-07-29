@@ -22,7 +22,6 @@
             width: 780px;
             height: 600px;
             background-color: green;
-            display: none;
         }
     </style>
     <script src="jq/jquery.js"></script>
@@ -88,7 +87,7 @@
     int totalPages= (int) session.getAttribute("totalPages");
     int currentPage= (int) session.getAttribute("currentPage");
 %>
-<div>
+<div id="d2">
     <table  width="900" align="center">
         <tr>
             <td align="center"><p>个人简历</p>
@@ -101,6 +100,13 @@
     <form method="post" action="updateResume">
         <table  align="center" width="800">
             <c:forEach items="${sessionScope.resum}" var="i">
+                <tr>
+                    <td>
+                        <c:if test="${sessionScope.re_id!=null}">
+                            <a href="cv?rb_id=${i.rb_id}">投递简历</a>
+                        </c:if>
+                    </td>
+                </tr>
                 <hr width="700" align="left">
                 <tr>
                     <td>姓名：</td>

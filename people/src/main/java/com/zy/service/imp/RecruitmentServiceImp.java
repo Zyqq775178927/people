@@ -1,6 +1,8 @@
 package com.zy.service.imp;
 
 import com.zy.dao.RecruitmentMapper;
+import com.zy.model.T_DEPARTMENT;
+import com.zy.model.T_POSITON;
 import com.zy.model.T_RECRUITMENT;
 import com.zy.service.RecruitmentService;
 import org.springframework.stereotype.Service;
@@ -26,5 +28,20 @@ public class RecruitmentServiceImp implements RecruitmentService {
         int pages1=currentPage*pages;
         int currentPages1=(currentPage-1)*pages;
         return recruitmentMapper.getRecruitmentLimitDao(state,pages1,currentPages1);
+    }
+
+    @Override
+    public boolean updateRecruit(T_RECRUITMENT t_recruitment) {
+        return recruitmentMapper.updateRecuritD(t_recruitment);
+    }
+
+    @Override
+    public List<T_DEPARTMENT> getDepart() {
+        return recruitmentMapper.getDepartDao();
+    }
+
+    @Override
+    public List<T_POSITON> getPositon(int did) {
+        return recruitmentMapper.getPositonDao(did);
     }
 }

@@ -1,11 +1,13 @@
 package com.zy.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/7/26.
  */
-public class T_RECRUITMENT {
+public class T_RECRUITMENT implements Serializable{
     private int re_id;
-    private int re_pid;
+    private T_POSITON t_positon;
     private String re_sal;
     private String re_address;
     private String re_phone;
@@ -24,12 +26,12 @@ public class T_RECRUITMENT {
         this.re_id = re_id;
     }
 
-    public int getRe_pid() {
-        return re_pid;
+    public T_POSITON getT_positon() {
+        return t_positon;
     }
 
-    public void setRe_pid(int re_pid) {
-        this.re_pid = re_pid;
+    public void setT_positon(T_POSITON t_positon) {
+        this.t_positon = t_positon;
     }
 
     public String getRe_sal() {
@@ -84,7 +86,7 @@ public class T_RECRUITMENT {
     public String toString() {
         return "T_RECRUITMENT{" +
                 "re_id=" + re_id +
-                ", re_pid=" + re_pid +
+                ", re_pid=" + t_positon +
                 ", re_sal='" + re_sal + '\'' +
                 ", re_address='" + re_address + '\'' +
                 ", re_phone='" + re_phone + '\'' +

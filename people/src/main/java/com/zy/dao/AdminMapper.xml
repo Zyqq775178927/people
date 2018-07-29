@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.AdminMapper">
+    <insert id="addAdmin">
+        INSERT INTO T_ADMIN(A_ID,A_NAME,A_PASS) VALUES (SEQ_ADMIN.nextval,#{a_name},#{a_pass})
+    </insert>
+    <insert id="addInvitedDao">
+      INSERT INTO INVITED(I_ID,I_REID,I_TIME,I_UID,I_STATE)
+      VALUES (SEQ_INVITED.nextval,#{t_recruitment.re_id},#{i_time},#{t_user.u_id},#{i_state})
+    </insert>
+    <update id="updateR_RDao">
+        UPDATE R_R SET R_STATE=#{state} where r_id=#{id}
+    </update>
+    <delete id="removeRecruitDao">
+        DELETE FROM T_RECRUITMENT WHERE RE_ID=#{id}
+    </delete>
+    <select id="getAdmin" resultType="com.zy.model.T_ADMIN">
+        SELECT * FROM T_ADMIN WHERE A_NAME=#{a_name} and A_PASS=#{a_pass}
+    </select>
+    <select id="getR_RDao" resultMap="r_rb_re">
+        SELECT * FROM R_R r,T_RECRUITMENT re,T_RESUME rb
+        WHERE r.R_REID=re.RE_ID
+        AND r.R_RBID=rb.RB_ID
+    </select>
+    <select id="adminGetResume" resultMap="t_u">
+        SELECT * FROM T_RESUME t,T_USER u WHERE t.RB_ID=#{rb_id}
+        and t.RB_UID=u.U_ID
+    </select>
+    <select id="getInvitedDao" resultType="com.zy.model.INVITED">
+        SELECT * FROM INVITED
+    </select>
+    <resultMap id="r_rb_re" type="com.zy.model.R_R">
+        <id property="r_id" column="R_ID"></id>
+        <result property="r_state" column="R_STATE"/>
+        <association property="t_recruitment" javaType="com.zy.model.T_RECRUITMENT">
+            <id property="re_id" column="RE_ID"></id>
+            <result property="re_need" column="RE_NEED"/>
+            <result property="re_address" column="RE_ADDRESS"/>
+        </association>
+        <association property="t_resume" javaType="com.zy.model.T_RESUME">
+            <id property="rb_id" column="RB_ID"/>
+            <result property="rb_name" column="RB_NAME"/>
+            <result property="rb_age" column="RB_AGE"/>
+            <result property="rb_school" column="RB_SCHOOL"/>
+            <result property="rb_major" column="RB_MAJOR"/>
+        </association>
+    </resultMap>
+    <resultMap id="t_u" type="com.zy.model.T_RESUME">
+        <id property="rb_id" column="RB_ID"/>
+        <result property="rb_name" column="RB_NAME"/>
+        <result property="rb_age" column="RB_AGE"/>
+        <result property="rb_school" column="RB_SCHOOL"/>
+        <result property="rb_major" column="RB_MAJOR"/>
+        <result property="rb_phone" column="RB_PHONE"/>
+        <result property="rb_email" column="RB_EMAIL"/>
+        <result property="rb_hobby" column="RB_HOBBY"/>
+        <result property="rb_introduce" column="RB_INTRODUCE"/>
+        <result property="rb_national" column="RB_NATIONAL"/>
+        <result property="rb_address" column="RB_ADDRESS"/>
+        <result property="rb_objective" column="RB_OBJECTIVE"/>
+        <result property="rb_sex" column="RB_SEX"/>
+        <result property="rb_schooling" column="RB_SCHOOLING"></result>
+        <association property="t_user" javaType="com.zy.model.T_USER">
+            <id property="u_id" column="U_ID"/>
+        </association>
+    </resultMap>
+</mapper>
