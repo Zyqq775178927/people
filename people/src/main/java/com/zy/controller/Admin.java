@@ -40,15 +40,15 @@ public class Admin {
     }
     @RequestMapping("/getRecruit")
     public String getRecruit(int currentPage, HttpSession session){
-        int state=1;
-        List<T_RECRUITMENT> recruitment = recruitmentService.getRecruitment(state);
+
+        List<T_RECRUITMENT> recruitment = recruitmentService.getRecruitment();
         if (recruitment.size()==0){
             return "../../main";
         }
         int totalpages=recruitment.size();
         int totalPages = Pages5.getTotalPages(totalpages);
         final int pages=5;
-        List<T_RECRUITMENT> recruitmentLimit = recruitmentService.getRecruitmentLimit(state, currentPage, pages);
+        List<T_RECRUITMENT> recruitmentLimit = recruitmentService.getRecruitmentLimit(currentPage, pages);
         System.out.println(recruitmentLimit);
         session.setAttribute("recruitment",recruitmentLimit);
         session.setAttribute("currentPage",currentPage);
@@ -58,6 +58,7 @@ public class Admin {
     @RequestMapping("/removeRecruit")
     public String removeRecruit(int id, HttpServletResponse response,HttpSession session) throws IOException {
         adminService.removeRecruit(id);
+        System.out.println(id);
         PrintWriter writer = response.getWriter();
         writer.flush();
         writer.close();

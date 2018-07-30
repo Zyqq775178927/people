@@ -39,7 +39,6 @@
             $("#position").change(function () {
                 var a=$(this).val();
                 $("#s1").val(a);
-                alert($("#s1").val())
             })
         })
     </script>

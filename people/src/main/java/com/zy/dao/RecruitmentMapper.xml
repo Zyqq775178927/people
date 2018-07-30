@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zy.dao.RecruitmentMapper">
+    <insert id="addRecruitDao">
+        INSERT INTO T_RECRUITMENT(RE_ID,RE_PID,RE_SAL,RE_ADDRESS,RE_PHONE,RE_STATE,RE_NEED)
+        VALUES (SEQ_RECRUIT.nextval,#{t_positon.p_id},#{re_sal},#{re_address},#{re_phone},#{re_state},#{re_need})
+    </insert>
     <update id="updateRecuritD">
         UPDATE T_RECRUITMENT SET RE_SAL=#{re_sal},RE_ADDRESS=#{re_address},RE_PHONE=#{re_phone},RE_NEED=#{re_need} where RE_ID=#{re_id}
     </update>
     <select id="getRecruitmentDao" resultType="com.zy.model.T_RECRUITMENT">
-        SELECT * FROM T_RECRUITMENT WHERE RE_STATE=#{state}
+        SELECT * FROM T_RECRUITMENT
     </select>
     <select id="getRecruitmentLimitDao" resultMap="r_p">
         SELECT * FROM
-        (SELECT ROWNUM rn,a.* FROM T_RECRUITMENT a WHERE RE_STATE=#{state} and #{p}>=ROWNUM) b,T_POSITON f
+        (SELECT ROWNUM rn,a.* FROM T_RECRUITMENT a WHERE #{p}>=ROWNUM) b,T_POSITON f
         where b.rn>#{c}
         and b.RE_PID=f.P_ID
     </select>

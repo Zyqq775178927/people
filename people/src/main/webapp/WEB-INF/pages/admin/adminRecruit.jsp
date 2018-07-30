@@ -29,6 +29,18 @@
                     }
                 })
             })
+            $("[name='release']").click(function () {
+                var a=$(this).siblings(":eq(0)").val();
+                var b=$(this).siblings(":eq(1)").val();
+                $.ajax({
+                    type:"post",
+                    url:"updateRecruitState",
+                    data:{"id":a,"state":b},
+                    success:function () {
+                        location.reload();
+                    }
+                })
+            })
         })
     </script>
 </head>
@@ -50,6 +62,7 @@
             <th>发布招聘时间</th>
             <th>修改</th>
             <th>删除</th>
+            <th>发布</th>
         </tr>
         <c:forEach items="${sessionScope.recruitment}" var="i">
             <tr>
@@ -64,7 +77,16 @@
                 <td><input type="submit" value="修改"></td>
                 </form>
                 <td><input type="hidden" value="${i.re_id}"></td>
+                <td><input type="hidden" value="${i.re_state}"></td>
                 <td><input type="button" value="删除" name="remove"></td>
+                <td>
+                    <c:if test="${i.re_state==0}">
+                        <input type="button" value="发布" name="release">
+                    </c:if>
+                    <c:if test="${i.re_state==1}">
+                        <input type="button" value="撤销" name="release">
+                    </c:if>
+                </td>
             </tr>
         </c:forEach>
     </table>

@@ -11,13 +11,15 @@ import java.util.List;
  * Created by Administrator on 2018/7/26.
  */
 public interface RecruitmentService {
-    List<T_RECRUITMENT> getRecruitment(int state);
+    List<T_RECRUITMENT> getRecruitment();
 
-    List<T_RECRUITMENT> getRecruitmentLimit(@Param("state") int state, @Param("c") int currentPage, @Param("p") int pages);
+    List<T_RECRUITMENT> getRecruitmentLimit( @Param("c") int currentPage, @Param("p") int pages);
 
     boolean updateRecruit(T_RECRUITMENT t_recruitment);
 
     List<T_DEPARTMENT> getDepart();
 
     List<T_POSITON> getPositon(int did);
+
+    boolean addRecruit(T_RECRUITMENT t_recruitment);
 }

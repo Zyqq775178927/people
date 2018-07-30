@@ -11,9 +11,9 @@ import java.util.List;
  * Created by Administrator on 2018/7/26.
  */
 public interface RecruitmentMapper {
-    List<T_RECRUITMENT> getRecruitmentDao(int state);
+    List<T_RECRUITMENT> getRecruitmentDao();
 
-    List<T_RECRUITMENT> getRecruitmentLimitDao(@Param("state") int state,@Param("p") int pages1,@Param("c") int currentPages1);
+    List<T_RECRUITMENT> getRecruitmentLimitDao(@Param("p") int pages1,@Param("c") int currentPages1);
 
     boolean updateRecuritD(T_RECRUITMENT t_recruitment);
 
@@ -21,4 +21,5 @@ public interface RecruitmentMapper {
 
     List<T_POSITON> getPositonDao(int did);
 
+    boolean addRecruitDao(T_RECRUITMENT t_recruitment);
 }
