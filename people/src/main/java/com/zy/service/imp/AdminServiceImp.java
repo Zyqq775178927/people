@@ -57,4 +57,14 @@ public class AdminServiceImp implements AdminService{
     public List<INVITED> getInvited() {
         return adminMapper.getInvitedDao();
     }
+
+    @Override
+    public boolean updateRecruitState(int id, int state) {
+        return adminMapper.updateRecruitState(id,state);
+    }
+
+    @Override
+    public boolean addRecruitTime(String time,int id) {
+        return adminMapper.updateRecruitTimeDao(time,id);
+    }
 }

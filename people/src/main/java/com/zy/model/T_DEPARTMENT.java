@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class T_DEPARTMENT implements Serializable {
     private int d_id;
     private String d_name;
-
+    private String d_time;
     public T_DEPARTMENT() {
     }
 
@@ -28,11 +28,20 @@ public class T_DEPARTMENT implements Serializable {
         this.d_name = d_name;
     }
 
+    public String getD_time() {
+        return d_time;
+    }
+
+    public void setD_time(String d_time) {
+        this.d_time = d_time;
+    }
+
     @Override
     public String toString() {
         return "T_DEPARTMENT{" +
                 "d_id=" + d_id +
                 ", d_name='" + d_name + '\'' +
+                ", d_time='" + d_time + '\'' +
                 '}';
     }
 }

@@ -19,15 +19,15 @@ public class RecruitmentServiceImp implements RecruitmentService {
     private RecruitmentMapper recruitmentMapper;
 
     @Override
-    public List<T_RECRUITMENT> getRecruitment() {
-        return recruitmentMapper.getRecruitmentDao();
+    public List<T_RECRUITMENT> getRecruitment(int state) {
+        return recruitmentMapper.getRecruitmentDao(state);
     }
 
     @Override
-    public List<T_RECRUITMENT> getRecruitmentLimit( int currentPage, int pages) {
+    public List<T_RECRUITMENT> getRecruitmentLimit( int state,int currentPage, int pages) {
         int pages1=currentPage*pages;
         int currentPages1=(currentPage-1)*pages;
-        return recruitmentMapper.getRecruitmentLimitDao(pages1,currentPages1);
+        return recruitmentMapper.getRecruitmentLimitDao(state,pages1,currentPages1);
     }
 
     @Override

@@ -24,14 +24,14 @@ public class Recruitment {
     @RequestMapping("/mainControlloer")
     public String getRecruitment(int currentPage, HttpSession session){
         int state=1;
-        List<T_RECRUITMENT> recruitment = recruitmentService.getRecruitment();
+        List<T_RECRUITMENT> recruitment = recruitmentService.getRecruitment(state);
         if (recruitment.size()==0){
             return "../../main";
         }
        int totalpages=recruitment.size();
         int totalPages = Pages5.getTotalPages(totalpages);
         final int pages=5;
-        List<T_RECRUITMENT> recruitmentLimit = recruitmentService.getRecruitmentLimit(currentPage, pages);
+        List<T_RECRUITMENT> recruitmentLimit = recruitmentService.getRecruitmentLimit(state,currentPage, pages);
         System.out.println(recruitmentLimit);
         session.setAttribute("recruitment",recruitmentLimit);
         session.setAttribute("currentPage",currentPage);
@@ -54,7 +54,7 @@ public class Recruitment {
     public Object getPositon(int did){
         List<T_POSITON> positons=recruitmentService.getPositon(did);
         return positons;
-    }
+}
     @RequestMapping("/adminAddRecruit")
     public String adminAddRecruit(T_RECRUITMENT t_recruitment, HttpServletRequest request){
         int re_pid= Integer.parseInt(request.getParameter("re_pid"));
@@ -64,5 +64,4 @@ public class Recruitment {
         recruitmentService.addRecruit(t_recruitment);
         return "admin/AdminMain";
     }
-
 }

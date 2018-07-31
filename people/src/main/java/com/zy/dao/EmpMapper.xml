@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.EmpMapper">
+    <insert id="addEmpDao">
+        INSERT into EMP(E_ID, E_PID, E_NAME, E_PASS, E_USERNAME, E_AGE, E_PHONE, E_ADDRESS, E_EMAIN)
+        VALUES (SEQ_EMP.nextval,#{t_positon.p_id},#{e_name},#{e_pass},#{e_username},#{e_age},#{e_phone},#{e_address},#{e_emain})
+    </insert>
+    <select id="getEmpNameDao" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_NAME=#{name}
+    </select>
+</mapper>

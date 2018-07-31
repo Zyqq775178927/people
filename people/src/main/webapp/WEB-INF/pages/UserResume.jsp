@@ -107,7 +107,7 @@
                         </c:if>
                     </td>
                 </tr>
-                <hr width="700" align="left">
+                <hr width="700" align="left"/>
                 <tr>
                     <td>姓名：</td>
                     <td width="60" height="50">

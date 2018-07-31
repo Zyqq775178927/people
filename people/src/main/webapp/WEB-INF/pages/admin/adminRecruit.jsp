@@ -20,6 +20,7 @@
         $(function () {
             $("[name='remove']").click(function () {
                 var a=$(this).siblings(":eq(0)").val();
+                alert(a)
                 $.ajax({
                     type:"post",
                     url:"removeRecruit",
@@ -76,10 +77,13 @@
                 <td><input type="hidden" value="${i.re_id}" name="re_id"></td>
                 <td><input type="submit" value="修改"></td>
                 </form>
-                <td><input type="hidden" value="${i.re_id}"></td>
-                <td><input type="hidden" value="${i.re_state}"></td>
-                <td><input type="button" value="删除" name="remove"></td>
                 <td>
+                    <input type="hidden" value="${i.re_id}">
+                    <input type="button" value="删除" name="remove">
+                </td>
+                <td>
+                    <input type="hidden" value="${i.re_id}">
+                    <input type="hidden" value="${i.re_state}">
                     <c:if test="${i.re_state==0}">
                         <input type="button" value="发布" name="release">
                     </c:if>
@@ -94,6 +98,7 @@
 <div>
     <a href="getRecruit?currentPage=<%=currentPage>1?currentPage-1:1%>">上一页</a>
     <a href="getRecruit?currentPage=<%=currentPage<totalPages?currentPage+1:totalPages%>">下一页</a>
+    <a href="getAdminMain">返回</a>
 </div>
 </body>
 </html>

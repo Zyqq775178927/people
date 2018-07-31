@@ -25,4 +25,8 @@ public interface AdminService {
     boolean addInvited(INVITED invited);
 
     List<INVITED> getInvited();
+
+    boolean updateRecruitState(int id, int state);
+
+    boolean addRecruitTime(String time,int id);
 }

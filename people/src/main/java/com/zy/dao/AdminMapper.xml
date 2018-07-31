@@ -11,6 +11,12 @@
     <update id="updateR_RDao">
         UPDATE R_R SET R_STATE=#{state} where r_id=#{id}
     </update>
+    <update id="updateRecruitState">
+        UPDATE T_RECRUITMENT SET RE_STATE=#{state} where RE_ID=#{id}
+    </update>
+    <update id="updateRecruitTimeDao">
+        UPDATE T_RECRUITMENT SET RE_TIME=#{t} where RE_ID=#{i}
+    </update>
     <delete id="removeRecruitDao">
         DELETE FROM T_RECRUITMENT WHERE RE_ID=#{id}
     </delete>

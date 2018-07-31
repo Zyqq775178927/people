@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/7/27
-  Time: 18:57
+  Date: 2018/7/30
+  Time: 16:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,10 +16,9 @@
     <title></title>
 </head>
 <body>
-    <a href="getRecruit?currentPage=1">查看招聘信息</a>
-    <a href="addRecruit">添加招聘信息</a>
-    <a href="getR_R">查看应聘信息</a>
-    <a href="addEmp">添加员工</a>
-    <a href="getdepartmain">部门管理</a>
+    <a href="addDepart">增加部门</a>
+    <a href="getDepart?currentPage=1">查看部门</a>
+    <a href="addPositon">添加职位</a>
+    <a href="getPositons?currentPage=1">查看职位</a>
 </body>
 </html>

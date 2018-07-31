@@ -10,6 +10,7 @@ public class T_POSITON implements Serializable {
     private String p_name;
     private double p_sal;
     private int p_state;
+    private String p_time;
     private T_DEPARTMENT t_department;
 
     public T_POSITON() {
@@ -55,6 +56,14 @@ public class T_POSITON implements Serializable {
         this.t_department = t_department;
     }
 
+    public String getP_time() {
+        return p_time;
+    }
+
+    public void setP_time(String p_time) {
+        this.p_time = p_time;
+    }
+
     @Override
     public String toString() {
         return "T_POSITON{" +
@@ -62,6 +71,7 @@ public class T_POSITON implements Serializable {
                 ", p_name='" + p_name + '\'' +
                 ", p_sal=" + p_sal +
                 ", p_state=" + p_state +
+                ", p_time='" + p_time + '\'' +
                 ", t_department=" + t_department +
                 '}';
     }

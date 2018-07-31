@@ -61,6 +61,12 @@
                         <c:if test="${i.i_state==-1}">
                             ${"应聘者拒绝应聘"}
                         </c:if>
+                        <c:if test="${i.i_state==2}">
+                            ${"录用"}
+                        </c:if>
+                        <c:if test="${i.i_state==-2}">
+                            ${"不录用"}
+                        </c:if>
                     </td>
             </c:forEach>
                 </tr>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.DepartMapper">
+    <insert id="addDepartsDao">
+        INSERT  INTO T_DEPARTMENT(D_ID,D_NAME,D_TIME) VALUES (SEQ_DEPART.nextval,#{d_name},#{d_time})
+    </insert>
+    <update id="updateDepartDao">
+        UPDATE T_DEPARTMENT SET D_NAME=#{d_name} where D_ID=#{d_id}
+    </update>
+    <delete id="deleteDepartDao">
+        DELETE FROM T_DEPARTMENT WHERE D_ID=#{did}
+    </delete>
+    <delete id="deletePositon">
+        DELETE FROM T_POSITON WHERE P_ID IN
+        <foreach collection="list" item="t_positons" open="(" separator="," close=")">
+            #{t_positons.p_id}
+        </foreach>
+    </delete>
+
+    <select id="getDepartNameDao" resultType="com.zy.model.T_DEPARTMENT">
+        SELECT * FROM T_DEPARTMENT WHERE D_NAME=#{name}
+    </select>
+    <select id="getDepartLimitDao" resultType="com.zy.model.T_DEPARTMENT">
+        SELECT b.* FROM (SELECT ROWNUM rn,a.* FROM T_DEPARTMENT a WHERE #{p}>=ROWNUM) b
+        where b.rn>#{c}
+    </select>
+    <select id="getPositonIDDao" resultType="com.zy.model.T_POSITON">
+        SELECT * FROM T_POSITON WHERE P_DID=#{did}
+    </select>
+    <select id="getEmpDao" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_PID IN
+        <foreach collection="list" item="t_positons" open="(" separator="," close=")">
+            #{t_positons.p_id}
+        </foreach>
+    </select>
+</mapper>

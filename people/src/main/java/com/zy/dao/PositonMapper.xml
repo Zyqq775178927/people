@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.PositonMapper">
+    <insert id="addPositonsDao">
+        insert into T_POSITON(P_ID,P_NAME,P_SAL,P_STATE,P_TIME,P_DID)
+        VALUES (SEQ_POSITON.nextval,#{p_name},#{p_sal},#{p_state},#{p_time},#{t_department.d_id})
+    </insert>
+    <update id="updatePositonDao">
+        UPDATE T_POSITON SET P_NAME=#{p_name},p_sal=#{p_sal} where p_id=#{p_id}
+    </update>
+    <delete id="deletePositon">
+        DELETE FROM T_POSITON WHERE P_ID=#{pid}
+    </delete>
+    <select id="getPositonNameDao" resultType="com.zy.model.T_POSITON">
+        SELECT * FROM T_POSITON WHERE P_NAME=#{name} and P_DID=#{did}
+    </select>
+    <select id="getPositonsDao" resultType="com.zy.model.T_POSITON">
+        SELECT  * FROM T_POSITON
+    </select>
+    <select id="getPositonsLimitDao" resultMap="p_d">
+        SELECT * FROM (SELECT ROWNUM rn,a.* FROM T_POSITON a where #{p}>=ROWNUM) b,T_DEPARTMENT t
+        where t.D_ID=b.P_DID
+        and b.rn>#{c}
+    </select>
+    <select id="getPositonNames" resultType="com.zy.model.T_POSITON">
+        SELECT * FROM T_POSITON WHERE P_NAME=#{name} and P_DID=#{did} and P_ID!=#{pid}
+    </select>
+    <select id="getEmpDao" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_PID=#{pid}
+    </select>
+    <resultMap id="p_d" type="com.zy.model.T_POSITON">
+        <id property="p_id" column="P_ID"></id>
+        <result property="p_name" column="P_NAME"/>
+        <result property="p_sal" column="P_SAL"/>
+        <result property="p_state" column="P_STATE"/>
+        <result property="p_time" column="P_time"/>
+        <association property="t_department" javaType="com.zy.model.T_DEPARTMENT">
+            <id property="d_id" column="D_ID"/>
+            <result property="d_name" column="D_NAME"/>
+        </association>
+     </resultMap>
+</mapper>

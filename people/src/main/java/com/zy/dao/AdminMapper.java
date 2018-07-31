@@ -27,4 +27,8 @@ public interface AdminMapper {
 
     List<INVITED> getInvitedDao();
 
+    boolean updateRecruitState(@Param("id") int id, @Param("state") int state);
+
+    boolean updateRecruitTimeDao(@Param("t") String time,@Param("i") int id);
+
 }
