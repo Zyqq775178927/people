@@ -14,6 +14,11 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body{
+            background-image: url("images/timg.jpg");
+        }
+    </style>
     <script src="jq/jquery.js"></script>
     <script>
     $(function () {
@@ -53,7 +58,7 @@
 </head>
 <body>
     <form action="addDeparts" method="post">
-        <table>
+        <table align="center">
             <tr>
                 <td>请输入部门名称</td>
                 <td><input type="text" name="d_name" id="name"></td>

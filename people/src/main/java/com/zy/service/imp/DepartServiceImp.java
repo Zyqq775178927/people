@@ -52,8 +52,8 @@ public class DepartServiceImp implements DepartService {
     }
 
     @Override
-    public List<EMP> getEmpID(List<T_POSITON> t_positons) {
-        return departMapper.getEmpDao(t_positons);
+    public List<EMP> getEmpID(List<T_POSITON> t_positons,int state) {
+        return departMapper.getEmpDao(t_positons,state);
     }
 
     @Override

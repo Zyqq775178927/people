@@ -15,6 +15,11 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body{
+            background-image: url("images/timg.jpg");
+        }
+    </style>
     <script src="jq/jquery.js"></script>
     <script>
         $(function () {

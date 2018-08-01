@@ -15,6 +15,15 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body{
+            background-image: url("images/timg.jpg");
+            align:auto;
+        }
+        #d1{
+            text-align: center;
+        }
+    </style>
     <script src="jq/jquery.js"></script>
     <script>
         $(function () {
@@ -24,6 +33,9 @@
             var ok3=false;
             $("#depart").change(function () {
                 $("#position").empty();
+                $("#s6").empty();
+                var a=$(this).val();
+                $("#s6").val(a);
                 $("#position").html('<option value="0">请选择职位</option>');
                 var a=$("#depart").val();
                 $.ajax({
@@ -40,6 +52,7 @@
                 })
             })
             $("#position").change(function () {
+                $("#s1").empty();
                 var a=$(this).val();
                 $("#s1").val(a);
             })
@@ -105,8 +118,9 @@
         session.getAttribute("depart");
     %>
     <h4 id="s3"></h4>
+    <div id="d1">
     <form action="addEmps" method="post">
-        <table>
+        <table align="center">
             <td>请为员工分配部门</td>
             <td>
                 <select id="depart">
@@ -156,10 +170,12 @@
             <tr>
                 <td>
                     <input type="hidden" id="s1" name="pid">
+                    <input type="hidden" id="s6" name="did" >
                     <input type="submit" value="添加" id="p1">
                 </td>
             </tr>
         </table>
     </form>
+    </div>
 </body>
 </html>

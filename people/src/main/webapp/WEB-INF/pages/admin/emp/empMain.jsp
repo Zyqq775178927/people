@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/7/30
-  Time: 16:01
+  Date: 2018/8/1
+  Time: 9:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,16 +14,8 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
-    <style>
-        body{
-            background-image: url("images/timg.jpg");
-        }
-    </style>
 </head>
 <body>
-    <a href="addDepart">增加部门</a>
-    <a href="getDepart?currentPage=1">查看部门</a>
-    <a href="addPositon">添加职位</a>
-    <a href="getPositons?currentPage=1">查看职位</a>
+    <a href="getEmp?currentPage=1">查看员工</a>
 </body>
 </html>

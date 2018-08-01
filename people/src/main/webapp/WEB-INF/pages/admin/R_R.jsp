@@ -15,6 +15,11 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body{
+            background-image: url("images/timg.jpg");
+        }
+    </style>
 </head>
 <body>
     <%
@@ -22,7 +27,7 @@
         session.getAttribute("invited");
     %>
     <div>
-        <table>
+        <table align="center">
             <tr>
                 <th>招聘需求</th>
                 <th>招聘地址</th>

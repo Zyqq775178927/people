@@ -16,6 +16,9 @@
     <base href="<%=basePath%>"/>
     <title></title>
     <style>
+        body {
+            background-image: url("images/timg.jpg");
+        }
         #d2{
             position: absolute;
             margin-left: 300px;

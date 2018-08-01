@@ -15,7 +15,9 @@ public class EMP implements Serializable{
     private String e_phone;
     private String e_address;
     private String e_emain;
-
+    private int e_state;
+    private T_DEPARTMENT t_department;
+    private String e_time;
     public EMP() {
     }
 
@@ -91,6 +93,30 @@ public class EMP implements Serializable{
         this.e_emain = e_emain;
     }
 
+    public int getE_state() {
+        return e_state;
+    }
+
+    public void setE_state(int e_state) {
+        this.e_state = e_state;
+    }
+
+    public T_DEPARTMENT getT_department() {
+        return t_department;
+    }
+
+    public void setT_department(T_DEPARTMENT t_department) {
+        this.t_department = t_department;
+    }
+
+    public String getE_time() {
+        return e_time;
+    }
+
+    public void setE_time(String e_time) {
+        this.e_time = e_time;
+    }
+
     @Override
     public String toString() {
         return "EMP{" +
@@ -103,6 +129,9 @@ public class EMP implements Serializable{
                 ", e_phone='" + e_phone + '\'' +
                 ", e_address='" + e_address + '\'' +
                 ", e_emain='" + e_emain + '\'' +
+                ", e_state=" + e_state +
+                ", t_department=" + t_department +
+                ", e_time='" + e_time + '\'' +
                 '}';
     }
 }

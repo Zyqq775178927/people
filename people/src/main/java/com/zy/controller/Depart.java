@@ -79,7 +79,8 @@ public class Depart {
             departService.removeDepart(did);
             return true;
         }else {
-            List<EMP> emps=departService.getEmpID(t_positons);
+            int state=0;//查询在职员工
+            List<EMP> emps=departService.getEmpID(t_positons,state);
             if (emps.size()==0){
                 departService.removePositon(t_positons);
                 departService.removeDepart(did);
@@ -88,5 +89,4 @@ public class Depart {
         }
         return null;
     }
-
 }

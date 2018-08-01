@@ -21,5 +21,6 @@
     <a href="getR_R">查看应聘信息</a>
     <a href="addEmp">添加员工</a>
     <a href="getdepartmain">部门管理</a>
+    <a href="empmains">员工管理</a>
 </body>
 </html>

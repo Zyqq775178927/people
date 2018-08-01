@@ -15,6 +15,11 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body{
+            background-image: url("images/timg.jpg");
+        }
+    </style>
     <script src="jq/jquery.js"></script>
     <script>
         $(function () {
@@ -70,7 +75,7 @@
     int totalPages =(int) session.getAttribute("totalPages");
 %>
 <body>
-    <table>
+    <table align="center">
         <tr>
             <th>部门名称</th>
             <th>部门创建时间</th>
@@ -97,7 +102,7 @@
             </tr>
         </c:forEach>
     </table>
-    <div>
+    <div align="center">
         <a href="getDepart?currentPage=<%=currentPage>1?currentPage-1:1%>">上一页</a>
         <a href="getDepart?currentPage=<%=currentPage<totalPages?currentPage+1:totalPages%>">下一页</a>
         <a href="getAdminMain" >返回</a>

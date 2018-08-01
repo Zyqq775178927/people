@@ -16,6 +16,11 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        body{
+            background-image: url("images/timg.jpg");
+        }
+    </style>
     <script src="jq/jquery.js"></script>
     <script>
         $(function () {
@@ -48,7 +53,7 @@
         session.getAttribute("depart");
     %>
     <form method="post" action="adminAddRecruit">
-        <table>
+        <table align="center">
             <tr>
                 <td>请选择部门</td>
                 <td>

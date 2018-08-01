@@ -26,7 +26,7 @@ public interface DepartMapper {
 
     boolean deleteDepartDao(int did);
 
-    List<EMP> getEmpDao(List<T_POSITON> t_positons);
+    List<EMP> getEmpDao(List<T_POSITON> t_positons,int state);
 
     boolean deletePositon(List<T_POSITON> t_positons);
 }

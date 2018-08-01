@@ -2,10 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zy.dao.EmpMapper">
     <insert id="addEmpDao">
-        INSERT into EMP(E_ID, E_PID, E_NAME, E_PASS, E_USERNAME, E_AGE, E_PHONE, E_ADDRESS, E_EMAIN)
-        VALUES (SEQ_EMP.nextval,#{t_positon.p_id},#{e_name},#{e_pass},#{e_username},#{e_age},#{e_phone},#{e_address},#{e_emain})
+        INSERT into EMP(E_ID, E_PID, E_NAME, E_PASS, E_USERNAME, E_AGE, E_PHONE, E_ADDRESS, E_EMAIN,E_STATE,E_DID,E_TIME)
+        VALUES (SEQ_EMP.nextval,#{t_positon.p_id},#{e_name},#{e_pass},#{e_username},#{e_age},#{e_phone},#{e_address},#{e_emain},#{e_state},#{t_department.d_id},#{e_time})
     </insert>
     <select id="getEmpNameDao" resultType="com.zy.model.EMP">
         SELECT * FROM EMP WHERE E_NAME=#{name}
+    </select>
+    <select id="getEmpLimit" resultType="com.zy.model.EMP">
+        SELECT * FROM (SELECT ROWNUM rn,a.* FROM EMP a where #{state}>=E_STATE and #{p}>=ROWNUM and E_DID=#{did}) b
+        where b.rn>#{c}
+    </select>
+    <select id="getEmp" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_DID=#{did} and #{state}>=E_STATE
+    </select>
+    <select id="getEmpLimitPositon" resultType="com.zy.model.EMP">
+        SELECT * FROM (SELECT ROWNUM rn,a.* FROM EMP a where #{state}>=E_STATE and #{p}>=ROWNUM and E_DID=#{did} and E_PID=#{positon}) b
+        where b.rn>#{c}
     </select>
 </mapper>

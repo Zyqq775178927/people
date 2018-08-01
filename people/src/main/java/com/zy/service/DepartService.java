@@ -23,7 +23,8 @@ public interface DepartService {
 
     boolean removeDepart(int did);
 
-    List<EMP> getEmpID(List<T_POSITON> t_positons);
+    List<EMP> getEmpID(List<T_POSITON> t_positons,int state);
 
     boolean removePositon(List<T_POSITON> t_positons);
+
 }

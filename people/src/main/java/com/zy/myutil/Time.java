@@ -21,4 +21,9 @@ public class Time {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         return sdf.format(calendar.getTime());
     }
+    public static String time2(){
+        Date date = new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
+    }
 }

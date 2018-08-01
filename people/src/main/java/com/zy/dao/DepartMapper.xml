@@ -28,9 +28,10 @@
         SELECT * FROM T_POSITON WHERE P_DID=#{did}
     </select>
     <select id="getEmpDao" resultType="com.zy.model.EMP">
-        SELECT * FROM EMP WHERE E_PID IN
+        SELECT * FROM EMP WHERE E_STATE>=#{state} and E_PID IN
         <foreach collection="list" item="t_positons" open="(" separator="," close=")">
             #{t_positons.p_id}
         </foreach>
+
     </select>
 </mapper>
