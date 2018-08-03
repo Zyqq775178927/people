@@ -19,4 +19,6 @@ public interface EmpService {
     List<EMP> getEmpLimits(Integer d_id, int currentPage, int pages, Integer e_state);
 
     List<EMP> getEmpLimit(Integer d_id, int currentPage, int pages, Integer e_state, Integer position);
+
+    EMP empLogin(EMP emp);
 }

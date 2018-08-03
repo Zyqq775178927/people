@@ -22,4 +22,7 @@ public interface EmpMapper {
     List<EMP> getEmpLimit(@Param("did") Integer d_id, @Param("c") int currentPages1, @Param("p") int pages1,@Param("state") Integer e_state);
 
     List<EMP> getEmpLimitPositon(@Param("did")Integer d_id, @Param("c")int currentPages1,@Param("p") int pages1, @Param("state")Integer e_state, @Param("positon") Integer position);
+
+    EMP empLogin(EMP emp);
+
 }

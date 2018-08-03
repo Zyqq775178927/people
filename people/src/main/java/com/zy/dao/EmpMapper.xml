@@ -19,4 +19,7 @@
         SELECT * FROM (SELECT ROWNUM rn,a.* FROM EMP a where #{state}>=E_STATE and #{p}>=ROWNUM and E_DID=#{did} and E_PID=#{positon}) b
         where b.rn>#{c}
     </select>
+    <select id="empLogin" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_EMAIN=#{e_name} and E_PASS=#{e_pass}
+    </select>
 </mapper>

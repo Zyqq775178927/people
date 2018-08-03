@@ -125,8 +125,11 @@ public class Admin {
         return "admin/resume";
     }
     @RequestMapping("/adminUpdateInvited")
-    public String adminUpdateInvited(int id,int state){
+    public String adminUpdateInvited(int id,int state ,HttpSession session){
         userService.updateInvited(id,state);
+        if (state>=0){
+            return "redirect:/addEmp";
+        }
         return "admin/AdminMain";
     }
 }

@@ -61,14 +61,17 @@
                         <td>
                             <select name="detail">
                                 <option value="1">薪资</option>
-                                <option value="2">部门</option>
+                                <option value="2">考勤</option>
+                                <option value="3">。。</option>
                             </select>
                         </td>
-                        <input type="hidden" name="e_id" value="${i.e_id}"/>
-                        <input type="submit" value="查询">
+                        <td>
+                            <input type="hidden" name="e_id" value="${i.e_id}"/>
+                            <input type="submit" value="查询">
+                        </td>
                     </form>
                     <form>
-                        input type="hidden" name="e_id" value="${i.e_id}"/>
+                        <input type="hidden" name="e_id" value="${i.e_id}"/>
                         <td><input type="submit" value="离职"></td>
                     </form>
                 </tr>

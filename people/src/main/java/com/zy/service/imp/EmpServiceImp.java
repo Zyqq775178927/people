@@ -46,4 +46,9 @@ public class EmpServiceImp implements EmpService{
         int currentPages1=(currentPage-1)*pages;
         return empMapper.getEmpLimitPositon(d_id,currentPages1,pages1,e_state,position);
     }
+
+    @Override
+    public EMP empLogin(EMP emp) {
+        return empMapper.empLogin(emp);
+    }
 }

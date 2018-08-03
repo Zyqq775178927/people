@@ -22,5 +22,6 @@
     <a href="addEmp">添加员工</a>
     <a href="getdepartmain">部门管理</a>
     <a href="empmains">员工管理</a>
+    <a href="trainmain">培训管理</a>
 </body>
 </html>

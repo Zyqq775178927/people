@@ -97,4 +97,10 @@ public class EmpController {
     public String getEmpjsp(){
         return "admin/emp/getEmp";
     }
+
+    @RequestMapping("/empLogin")
+    public String empLogin(EMP emp){
+        EMP emp1 = empService.empLogin(emp);
+        return null;
+    }
 }

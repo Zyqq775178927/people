@@ -19,6 +19,9 @@
         body{
             background-image: url("images/timg.jpg");
         }
+        #d1{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -27,7 +30,7 @@
         session.getAttribute("invited");
     %>
     <div>
-        <table align="center">
+        <table align="center" id="d1">
             <tr>
                 <th>招聘需求</th>
                 <th>招聘地址</th>
@@ -35,7 +38,7 @@
                 <th>查阅简历</th>
                 <th>录用</th>
             </tr>
-            <c:forEach items="${sessionScope.r_r}" var="i">
+            <c:forEach items="${sessionScope.r_r}" var="i" varStatus="j">
                 <tr>
                     <td>${i.t_recruitment.re_need}</td>
                     <td>${i.t_recruitment.re_address}</td>
@@ -53,28 +56,26 @@
                         </a>
                     </td>
 
-            </c:forEach>
-            <c:forEach items="${sessionScope.invited}" var="i">
                     <td>
-                        <c:if test="${i.i_state==0}">
+                        <c:if test="${invited[j.count-1].i_state==0}">
                             ${"等待应聘者前来应聘"}
                         </c:if>
-                        <c:if test="${i.i_state==1}">
-                            <a href="adminUpdateInvited?id=${i.i_id}&state=2">录用</a>
-                            <a href="adminUpdateInvited?id=${i.i_id}&state=-2">不录用</a>
+                        <c:if test="${invited[j.count-1].i_state==1}">
+                            <a href="adminUpdateInvited?id=${invited[j.count-1].i_id}&state=2">录用</a>
+                            <a href="adminUpdateInvited?id=${invited[j.count-1].i_id}&state=-2">不录用</a>
                         </c:if>
-                        <c:if test="${i.i_state==-1}">
+                        <c:if test="${invited[j.count-1].i_state==-1}">
                             ${"应聘者拒绝应聘"}
                         </c:if>
-                        <c:if test="${i.i_state==2}">
+                        <c:if test="${invited[j.count-1].i_state==2}">
                             ${"录用"}
                         </c:if>
-                        <c:if test="${i.i_state==-2}">
+                        <c:if test="${invited[j.count-1].i_state==-2}">
                             ${"不录用"}
                         </c:if>
                     </td>
             </c:forEach>
-                </tr>
+
         </table>
     </div>
 </body>

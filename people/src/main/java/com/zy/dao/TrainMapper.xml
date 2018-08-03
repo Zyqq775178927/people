@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.TrainMapper">
+    <insert id="addTrainDao">
+        <selectKey keyProperty="t_id" resultType="int" order="BEFORE">
+            select SEQ_TRAIN.nextval from dual
+        </selectKey>
+        INSERT INTO TRAIN(T_ID, T_NAME, T_CONTENT, T_STARTTIME, T_ENDTIME, T_STATE, T_ADDRESS)
+        VALUES (#{t_id},#{t_name},#{t_content},#{t_starttime},#{t_endtime},#{t_state},#{t_address})
+    </insert>
+    <insert id="addEmpAndTrainDao">
+        INSERT INTO EMP_TRAIN(MT_ID,MT_EID,MT_TID) VALUES (SEQ_EMP_TRAIN.nextval,#{e_id},#{t_id})
+    </insert>
+    <update id="updateTrain">
+        UPDATE TRAIN SET T_NAME=#{t_name},T_CONTENT=#{t_content},T_STARTTIME=#{t_starttime},T_ENDTIME=#{t_endtime},T_ADDRESS=#{t_address}
+        where T_ID=#{t_id}
+    </update>
+    <update id="updateTrainState">
+        UPDATE TRAIN SET T_TIME=#{t_time},T_STATE=#{t_state} where T_ID=#{t_id}
+    </update>
+    <select id="getEmpIDDao" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_STATE=#{depart}
+    </select>
+    <select id="getEmpsDao" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_DID=#{depart} and E_STATE>=0
+    </select>
+    <select id="getEmpPositonDao" resultType="com.zy.model.EMP">
+        SELECT * FROM EMP WHERE E_DID=#{did} and E_PID=#{pid} and E_STATE>=0
+    </select>
+    <select id="getTrainDao" resultType="com.zy.model.TRAIN">
+        SELECT * FROM TRAIN
+    </select>
+    <select id="getTrainLimitDao" resultType="com.zy.model.TRAIN">
+        SELECT * FROM (SELECT ROWNUM rn,a.* FROM TRAIN a where #{p}>=ROWNUM) b
+        where b.rn>#{c}
+    </select>
+    <select id="getTrainIDDao" resultType="com.zy.model.TRAIN">
+        SELECT * FROM TRAIN WHERE T_ID=#{t_id}
+    </select>
+</mapper>
