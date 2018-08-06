@@ -1,6 +1,7 @@
 package com.zy.controller;
 
 import com.zy.model.EMP;
+import com.zy.model.EMP_TRAIN;
 import com.zy.model.T_DEPARTMENT;
 import com.zy.model.T_POSITON;
 import com.zy.myutil.Pages5;
@@ -98,9 +99,39 @@ public class EmpController {
         return "admin/emp/getEmp";
     }
 
-    @RequestMapping("/empLogin")
-    public String empLogin(EMP emp){
+    @RequestMapping("/getEmpLogin")
+    public String getEmpLogin(){
+        return "emp/emplogin";
+    }
+    @RequestMapping(value = "/empLogin",produces = "text/html;charset=utf-8")
+    public String empLogin(EMP emp,HttpServletRequest request,HttpServletResponse response,HttpSession session){
+        try {
+            request.setCharacterEncoding("utf-8");
+            response.setContentType("text/html;charset=utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         EMP emp1 = empService.empLogin(emp);
-        return null;
+        if (emp1==null){
+            request.setAttribute("error","用户名或密码错误");
+            return "emp/emplogin";
+        }else {
+            session.setAttribute("emp",emp1);
+            return "emp/empMain";
+        }
+    }
+    @RequestMapping("/getEmpTrain")
+    public String getEmpTrain(int currentPage,HttpSession session){
+        EMP emp= (EMP) session.getAttribute("emp");
+        List<EMP_TRAIN> empAndTrain = empService.getEmpAndTrain(emp);
+        int totalpages=empAndTrain.size();
+        int totalPages = Pages5.getTotalPages(totalpages);
+        final int pages=5;
+        List<EMP_TRAIN> emp_trains=empService.getEmpAndTrainLimit(emp,currentPage,pages);
+        session.setAttribute("empAndTrain",emp_trains);
+        session.setAttribute("totalPages",totalPages);
+        session.setAttribute("currentPage",currentPage);
+        return "emp/empAndTrain";
     }
 }

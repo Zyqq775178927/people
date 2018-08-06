@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.AttenDanceMapper">
+    <insert id="addStartTime">
+        INSERT INTO ATTENDANCE (A_ID,A_EID,A_STARTTIME,A_DATA) VALUES (SEQ_ATTENDANCE.nextval,#{emp.e_id},#{a_starttime},#{a_data})
+    </insert>
+    <insert id="addDesertDao">
+        INSERT INTO DESERT (DE_ID, DE_EID, DE_MONEY, DE_INTRO, DE_TIME, DE_STATE) VALUES (SEQ_DESERT.nextval,#{emp.e_id},#{de_money},#{de_intro},#{de_time},#{de_state})
+    </insert>
+    <update id="updateEndTimeDao">
+        UPDATE ATTENDANCE SET A_ENDTIME=#{a_endtime},A_STATE=#{a_state} where A_EID=#{emp.e_id} and A_DATA=#{a_data}
+    </update>
+    <update id="updateAttenDanceStateDao">
+        UPDATE ATTENDANCE SET A_STATE=#{a_state} where A_ID=#{a_id}
+    </update>
+    <update id="updateDesert">
+        UPDATE DESERT SET DE_INTRO=#{de_intro},DE_MONEY=#{de_money} where DE_EID=#{emp.e_id} and DE_STATE=#{de_state} and DE_TIME=#{de_time}
+    </update>
+    <update id="updateAttenDanceEndTime">
+        UPDATE ATTENDANCE SET A_ENDTIME=#{a_endtime} where A_EID=#{emp.e_id} and A_DATA=#{a_data}
+    </update>
+    <delete id="deleteDesertDao">
+        DELETE FROM DESERT WHERE DE_EID=#{emp.e_id} and DE_TIME=#{de_time} and DE_STATE=#{de_state}
+    </delete>
+    <select id="getAttenDanceTimeDao" resultType="com.zy.model.ATTENDANCE">
+        SELECT * FROM ATTENDANCE where A_DATA=#{a_data} and A_EID=#{emp.e_id}
+    </select>
+    <select id="getAttenDanceDao" resultType="com.zy.model.ATTENDANCE">
+        SELECT * FROM ATTENDANCE where A_EID=#{emp.e_id} and a_data=#{a_data}
+    </select>
+    <select id="getEndTime" resultType="com.zy.model.ATTENDANCE">
+        SELECT * FROM ATTENDANCE WHERE A_DATA=#{state} and A_EID=#{emp.e_id}
+    </select>
+</mapper>

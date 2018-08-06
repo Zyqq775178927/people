@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -34,7 +35,11 @@
             <input name="a_pass" type="password" id="password"/><br/>
             <input value="登录" style="width:100%;" type="submit">
         </form>
-        <h4 style="background-color: red" align="center">${error}</h4>
+        <h4 style="background-color: red" align="center">
+            <c:if test="${requestScope.error!=null}">
+                ${"用户名或密码错误"}
+            </c:if>
+        </h4>
     </div>
 </div>
 </body>

@@ -2,6 +2,7 @@ package com.zy.service.imp;
 
 import com.zy.dao.EmpMapper;
 import com.zy.model.EMP;
+import com.zy.model.EMP_TRAIN;
 import com.zy.model.T_POSITON;
 import com.zy.service.EmpService;
 import org.springframework.stereotype.Service;
@@ -50,5 +51,18 @@ public class EmpServiceImp implements EmpService{
     @Override
     public EMP empLogin(EMP emp) {
         return empMapper.empLogin(emp);
+    }
+
+    @Override
+    public List<EMP_TRAIN> getEmpAndTrain(EMP emp) {
+        return empMapper.getEmpAndTrain(emp);
+
+    }
+
+    @Override
+    public List<EMP_TRAIN> getEmpAndTrainLimit(EMP emp, int currentPage, int pages) {
+        int pages1=currentPage*pages;
+        int currentPages1=(currentPage-1)*pages;
+        return empMapper.getEmpAndTrainLimit(emp,pages1,currentPages1);
     }
 }

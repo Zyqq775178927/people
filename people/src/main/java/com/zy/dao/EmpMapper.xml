@@ -20,6 +20,38 @@
         where b.rn>#{c}
     </select>
     <select id="empLogin" resultType="com.zy.model.EMP">
-        SELECT * FROM EMP WHERE E_EMAIN=#{e_name} and E_PASS=#{e_pass}
+        SELECT * FROM EMP WHERE E_NAME=#{e_name} and E_PASS=#{e_pass} and E_STATE>=0
     </select>
+    <select id="getEmpAndTrain" resultMap="e_t">
+        SELECT * FROM EMP_TRAIN e_t,EMP e,TRAIN t
+        WHERE  e_t.MT_EID=e.E_ID
+        and e_t.MT_TID=t.T_ID
+        AND t.T_STATE=1
+        AND e.E_ID=#{e_id}
+    </select>
+    <select id="getEmpAndTrainLimit" resultMap="e_t">
+        SELECT * FROM ( SELECT ROWNUM rn,e_t.*,t.*,e.* FROM EMP_TRAIN e_t,EMP e,TRAIN t
+        WHERE  e_t.MT_EID=e.E_ID
+        and e_t.MT_TID=t.T_ID
+        AND t.T_STATE=1
+        AND e.E_ID=#{emp.e_id}
+        and #{p}>=ROWNUM) b
+        where b.rn>#{c}
+    </select>
+    <resultMap id="e_t" type="com.zy.model.EMP_TRAIN">
+        <id property="mt_id"  column="MT_ID"></id>
+        <association property="emp" javaType="com.zy.model.EMP">
+            <id property="e_id" column="E_ID"></id>
+        </association>
+        <association property="train" javaType="com.zy.model.TRAIN">
+            <id property="t_id" column="T_ID"></id>
+            <result property="t_name" column="T_NAME"/>
+            <result property="t_content" column="T_CONTENT"/>
+            <result property="t_starttime" column="T_STARTTIME"/>
+            <result property="t_endtime" column="T_ENDTIME"/>
+            <result property="t_time" column="T_TIME"/>
+            <result property="t_address" column="T_ADDRESS"/>
+            <result property="t_state" column="t_state"/>
+        </association>
+    </resultMap>
 </mapper>

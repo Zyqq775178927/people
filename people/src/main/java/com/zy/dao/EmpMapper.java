@@ -1,6 +1,7 @@
 package com.zy.dao;
 
 import com.zy.model.EMP;
+import com.zy.model.EMP_TRAIN;
 import com.zy.model.T_POSITON;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -25,4 +26,7 @@ public interface EmpMapper {
 
     EMP empLogin(EMP emp);
 
+    List<EMP_TRAIN> getEmpAndTrain(EMP emp);
+
+    List<EMP_TRAIN> getEmpAndTrainLimit(@Param("emp") EMP emp, @Param("p") int pages1, @Param("c") int currentPages1);
 }

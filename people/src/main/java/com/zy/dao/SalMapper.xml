@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zy.dao.SalMapper">
+    <select id="getEmpDao" resultMap="e_s_p">
+        SELECT * FROM EMP WHERE E_STATE>=#{state}
+    </select>
+    <select id="getAttenCountDayDao" resultType="java.lang.Integer">
+        SELECT COUNT (A_DATA) FROM ATTENDANCE WHERE A_EID=#{emp.e_id} and A_STATE>#{state} and A_DATA BETWEEN #{firstDay} and #{lastDay}
+    </select>
+    <select id="getDesertDao" resultType="com.zy.model.DESERT">
+        SELECT * FROM DESERT WHERE DE_EID=#{emp.e_id} and DE_TIME BETWEEN #{firstDay} and #{lastDay}
+    </select>
+    <resultMap id="e_s_p" type="com.zy.model.EMP">
+        <id property="e_id" column="E_ID"></id>
+        <association property="t_positon" javaType="com.zy.model.T_POSITON">
+            <id property="p_id" column="P_ID"></id>
+            <result property="p_sal" column="P_SAL"></result>
+        </association>
+    </resultMap>
+</mapper>

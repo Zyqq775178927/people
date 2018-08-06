@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/7/27
-  Time: 18:57
+  Date: 2018/8/3
+  Time: 16:35
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,13 +17,11 @@
     <title></title>
 </head>
 <body>
-    <a href="getRecruit?currentPage=1">查看招聘信息</a>
-    <a href="addRecruit">添加招聘信息</a>
-    <a href="getR_R">查看应聘信息</a>
-    <a href="addEmp">添加员工</a>
-    <a href="getdepartmain">部门管理</a>
-    <a href="empmains">员工管理</a>
-    <a href="trainmain">培训管理</a>
-    <a href="salMain">员工薪资结算</a>
+    <c:if test="${requestScope.clock==1}">
+        <a href="goWork">上班打卡</a>
+    </c:if>
+    <c:if test="${requestScope.clock==2}">
+        <a href="afterWork">下班打卡</a>
+    </c:if>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.zy.service;
 
 import com.zy.model.EMP;
+import com.zy.model.EMP_TRAIN;
 import com.zy.model.T_POSITON;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,4 +22,8 @@ public interface EmpService {
     List<EMP> getEmpLimit(Integer d_id, int currentPage, int pages, Integer e_state, Integer position);
 
     EMP empLogin(EMP emp);
+
+    List<EMP_TRAIN> getEmpAndTrain(EMP emp);
+
+    List<EMP_TRAIN> getEmpAndTrainLimit(EMP emp, int currentPage, int pages);
 }
